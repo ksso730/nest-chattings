@@ -1,8 +1,10 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { Module, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 import { AppController } from './app.controller';
+import { ChatsGateway } from './chats/chats.gateway';
+import { ChatsModule } from './chats/chats.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -14,9 +16,10 @@ import { AppController } from './app.controller';
       // useFindAndModify: false, // mongoose 버전 6.0 이상부터는 불필요
       // useCreateIndex: true,
     }),
+    ChatsModule,
   ],
   controllers: [AppController],
-  providers: [],
+  providers: [ChatsGateway],
 })
 export class AppModule implements NestModule {
   configure() {
