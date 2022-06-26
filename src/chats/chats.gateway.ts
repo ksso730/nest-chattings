@@ -34,6 +34,7 @@ export class ChatsGateway implements OnGatewayInit {
     @MessageBody() username: string,
     @ConnectedSocket() socket: Socket,
   ) {
+    socket.broadcast.emit('user_connected', username);
     return username;
   }
 }

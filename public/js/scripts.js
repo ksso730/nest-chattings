@@ -7,6 +7,10 @@ const helloStrangerElement = getElementById('hello_stranger');
 const chattingboxElement = getElementById('chatting_box');
 const formElement = getElementById('chat_form');
 
+socket.on('user_connected', (username) => {
+  console.log(`${username} is connected!!`);
+});
+
 const drawHelloStranger = (username) =>
   (helloStrangerElement.innerText = `Hello Stranger ${username} :)`);
 
