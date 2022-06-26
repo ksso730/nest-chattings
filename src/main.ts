@@ -1,3 +1,4 @@
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
@@ -11,7 +12,7 @@ async function bootstrap() {
   // static asset을 public으로 지정. nest에서 자동으로 public 하위 디렉토리들을 찾아준다.
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   app.setViewEngine('hbs');
-
+  app.useGlobalPipes(new ValidationPipe());
   await app.listen(8000);
 }
 bootstrap();
