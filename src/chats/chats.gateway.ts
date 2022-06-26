@@ -29,6 +29,7 @@ export class ChatsGateway implements OnGatewayInit {
     this.logger.log(`conneceted ${socket.id} ${socket.nsp.name}`);
     // LOG [chat] conneceted gRu5SBIZMmkTWPmWAAAD /chattings
   }
+
   @SubscribeMessage('new_user')
   handleNewUser(
     @MessageBody() username: string,
@@ -36,5 +37,16 @@ export class ChatsGateway implements OnGatewayInit {
   ) {
     socket.broadcast.emit('user_connected', username);
     return username;
+  }
+
+  @SubscribeMessage('submit_chat')
+  handleSubmitChat(
+    @MessageBody() chat: string,
+    @ConnectedSocket() socket: Socket,
+  ) {
+    socket.broadcast.emit('new_chat', {
+      chat,
+      username: socket.id,
+    });
   }
 }
