@@ -5,7 +5,7 @@ import { Document, SchemaOptions } from 'mongoose';
 const options: SchemaOptions = {
   // 기본값 true일 경우, _id === id : false일 경우, 따로 생성가능
   id: false,
-  collection: 'chattings',
+  collection: 'sockets',
   timestamps: true,
 };
 
