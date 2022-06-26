@@ -34,8 +34,6 @@ export class ChatsGateway implements OnGatewayInit {
     @MessageBody() username: string,
     @ConnectedSocket() socket: Socket,
   ) {
-    // server->client
-    socket.emit('hello_user', 'hello ' + username);
-    return 'finish message';
+    return username;
   }
 }
